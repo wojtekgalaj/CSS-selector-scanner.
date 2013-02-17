@@ -4,14 +4,22 @@ var $ = require('jquery');
 
 var matchInMarkup = function (row, markup) {
   var $markup = $(markup),
-    rowLength = row.length - 1;
+    rowLength = row.length - 1,
+    $matched;
 
-  while (rowLength) {
-    $markup.find(row[rowLength]);
+  while (rowLength >= 0) {
     // 1. Find selector in the markup
+    console.log('Looking for ', row[rowLength]);
+    $matched = $markup.find(row[rowLength]);
+    console.log('matched: ', $matched.length)
+    if (!$matched.length) {
+      console.log('Havent found it, returning');
+      return;
+    }
     // 2. See if parent selector match aswell
     // 3. Do nothing if selectors match
     // 4. Log to a report file if selectors do not match
+    console.log('Decresing rowLength');
     rowLength --;
   }
 }
