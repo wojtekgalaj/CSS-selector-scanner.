@@ -2,9 +2,6 @@ var fs = require('fs');
 var _ = require('underscore');
 var $ = require('jquery');
 
-var domElements = ['html', 'body', 'nav', 'h1', 'p']
-
-
 var matchInMarkup = function (row, markup) {
   var $markup = $(markup),
     rowLength = row.length - 1;
@@ -12,7 +9,7 @@ var matchInMarkup = function (row, markup) {
   while (rowLength) {
     $markup.find(row[rowLength]);
     // 1. Find selector in the markup
-    // 2. See if oarent selector match aswell
+    // 2. See if parent selector match aswell
     // 3. Do nothing if selectors match
     // 4. Log to a report file if selectors do not match
     rowLength --;
@@ -25,7 +22,6 @@ var findCssSelectors = function (styles, markup) {
   _.each(selectorRows, function (row, index) {
     row = row.replace(/ +/g, ' ' ).split(' ');
     row = _.without(row, '{');
-
     matchInMarkup(row, markup);
   })
 }
@@ -33,4 +29,4 @@ var findCssSelectors = function (styles, markup) {
 var markup = fs.readFileSync('testProject/index.html', 'utf-8');
 var styles = fs.readFileSync('testProject/css/styles.css', 'utf-8');
 
-var cssSelectors = findCssSelectors(styles, markup);
+findCssSelectors(styles, markup);
