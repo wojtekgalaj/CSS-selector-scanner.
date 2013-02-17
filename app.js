@@ -10,8 +10,11 @@ var matchInMarkup = function (row, markup) {
     rowLength = row.length - 1;
 
   while (rowLength) {
-    debugger;
     $markup.find(row[rowLength]);
+    // 1. Find selector in the markup
+    // 2. See if oarent selector match aswell
+    // 3. Do nothing if selectors match
+    // 4. Log to a report file if selectors do not match
     rowLength --;
   }
 }
