@@ -1,1 +1,1 @@
-This is the most amazing piece of software ever written. It will scan a project and find unused CSS selectors in your stylesheets.
+Scan a project and find unused CSS selectors in your stylesheets.
