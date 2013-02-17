@@ -1,0 +1,9 @@
+{
+  "name": "css_selector_counter",
+  "version": "0.1.0",
+  "author": "@wojtekgalaj",
+  "dependencies": {
+    "underscore": "*",
+    "jquery": "*"
+  }
+}
