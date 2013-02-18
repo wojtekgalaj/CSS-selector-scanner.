@@ -24,8 +24,7 @@ var matchInMarkup = function (row, markup) {
       logNotFound(row);
       return;
     }
-    firstRow = selector === '' ? ' ' : '';
-    selector = firstRow + row[selectorPosition] + ' ' + selector;
+    selector = ' ' + row[selectorPosition] + ' ' + selector;
     console.log('New selector: ', selector);
     console.log('Decresing selectorPosition');
     selectorPosition --;
