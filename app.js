@@ -14,19 +14,13 @@ var matchInMarkup = function (row, markup) {
     selector = '',
     firstRun;
 
-  console.log('New Row!')
   while (selectorPosition >= 0) {
-    console.log('Looking for ', row[selectorPosition] + selector);
     $matched = $markup.find(row[selectorPosition] + selector);
-    console.log('matched: ', $matched.length)
     if (!$matched.length) {
-      console.log('Havent found it, returning');
       logNotFound(row);
       return;
     }
     selector = ' ' + row[selectorPosition] + ' ' + selector;
-    console.log('New selector: ', selector);
-    console.log('Decresing selectorPosition');
     selectorPosition --;
   }
 };
