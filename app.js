@@ -2,9 +2,8 @@ var fs = require('fs');
 var _ = require('underscore');
 var $ = require('jquery');
 
-var logNotFound = function (row) {
-  var logText = row.join().replace(/,/g, ' ');
-  console.log('Logged missed selector: ', logText);
+var logNotFound = function (log) {
+  console.log('Logged missed selector: ', log);
 }
 
 var matchInMarkup = function (row, markup) {
@@ -14,14 +13,8 @@ var matchInMarkup = function (row, markup) {
     selector = '',
     firstRun;
 
-  while (selectorPosition >= 0) {
-    $matched = $markup.find(row[selectorPosition] + selector);
-    if (!$matched.length) {
-      logNotFound(row);
-      return;
-    }
-    selector = ' ' + row[selectorPosition] + ' ' + selector;
-    selectorPosition --;
+  if (!$markup.find(row).length) {
+    logNotFound(row);
   }
 };
 
@@ -30,7 +23,7 @@ var findCssSelectors = function (styles, markup) {
 
   _.each(selectorRows, function (row, index) {
     row = row.replace(/ +/g, ' ' ).split(' ');
-    row = _.without(row, '{');
+    row = _.without(row, '{').join().replace(/,/g, ' ');
     matchInMarkup(row, markup);
   })
 };
