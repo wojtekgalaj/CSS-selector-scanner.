@@ -6,8 +6,9 @@ var logNotFound = function (log) {
   console.log('Logged missed selector: ', log);
 }
 
-var matchInMarkup = function (row, $markup) {
-  var selectorPosition = row.length - 1,
+var matchInMarkup = function (row, markup) {
+  var $markup = $(markup),
+    selectorPosition = row.length - 1,
     $matched,
     selector = '',
     firstRun;
@@ -26,7 +27,7 @@ var findCssSelectors = function (styles, markup) {
   _.each(selectorRows, function (row, index) {
     row = row.replace(/ +/g, ' ' ).split(' ');
     row = _.without(row, '{').join().replace(/,/g, ' ');
-    matchInMarkup(row, $markup);
+    matchInMarkup(row, markup);
   })
 };
 
